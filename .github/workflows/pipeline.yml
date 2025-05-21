@@ -37,7 +37,7 @@ jobs:
           fetch-depth: 0  
       
       - name: Debug commit message
-        run: echo "${{ toJSON(github.event.commits.*.message) }}"
+        run: echo "${{ contains(join(github.event.commits.*.message, ' '), '#skip') }}"
 
       - name: Bump version and push tag
         if: ${{ github.env.CONDITION == 'true' }}
